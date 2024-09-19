@@ -36,7 +36,7 @@ jail="--network none --memory=1g --cpus=1"
 
 if [ $1 == 'jutge-submit' ]
 then
-    docker run --rm -i $jail $selected_version $@
+    docker run --rm -i --tmpfs /home/worker:exec,uid=1001,gid=1001 $jail $selected_version $@
 else
     if [ -t 1 ]     # check if stdout is a TTY
     then
